@@ -1,0 +1,8 @@
+{
+    "name": "kinopoiskapp",
+    "version": "1.0.0",
+    "dependencies": {
+        "mysql2": "^1.7.0",
+        "puppeteer": "^1.20.0"
+    }
+}
