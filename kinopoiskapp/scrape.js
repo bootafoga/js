@@ -1,11 +1,10 @@
 const puppeteer = require('puppeteer');
 const db = require('./database2');
-let browser;
 
-let scrape = async (str) => {
+let scrape = async (browser, date) => {
     const page = await browser.newPage();
 
-    await page.goto('https://www.kinopoisk.ru/top/day/' + str, {
+    await page.goto('https://www.kinopoisk.ru/top/day/' + date, {
         waitUntil: 'domcontentloaded'
     });
 
@@ -42,11 +41,11 @@ let scrape = async (str) => {
 
 
 const getInfo = async () => {
-    browser = await puppeteer.launch({headless: false}); // тут ли это должно быть?
+    const browser = await puppeteer.launch({headless: false}); // тут ли это должно быть?
     
     // здесь нужно добавить вычисление даты и цикл 
     let date = new Date().toISOString().substring(0,10);
-    db(await scrape(date), date);
+    db(await scrape(browser, date), date);
 
     await browser.close();
 }
