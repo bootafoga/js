@@ -1,5 +1,5 @@
 const puppeteer = require('puppeteer');
-const db = require('./database2');
+const db = require('./database');
 
 let scrape = async (browser, date) => {
     const page = await browser.newPage();
