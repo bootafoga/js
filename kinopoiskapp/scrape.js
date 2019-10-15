@@ -1,5 +1,6 @@
 const puppeteer = require('puppeteer');
 const db = require('./database');
+const dates = require('./dates');
 
 let scrape = async (browser, date) => {
     const page = await browser.newPage();
@@ -41,11 +42,12 @@ let scrape = async (browser, date) => {
 
 
 const getInfo = async () => {
-    const browser = await puppeteer.launch({headless: false}); // тут ли это должно быть?
-    
-    // здесь нужно добавить вычисление даты и цикл 
-    let date = new Date().toISOString().substring(0,10);
-    db(await scrape(browser, date), date);
+    const browser = await puppeteer.launch({headless: false}); // тут ли это должно быть? 
+    const arrayOfDates = dates.getDate();
+
+    for (var date of arrayOfDates){
+        db(await scrape(browser, date), date);
+    }
 
     await browser.close();
 }

@@ -1,6 +1,5 @@
 // TODO:
 // Стрелочные функции
-// Добавить цикл по 30 дням
 
 const mysql = require("mysql2");
 let connection;
